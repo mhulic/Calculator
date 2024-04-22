@@ -1,3 +1,6 @@
+package com.mh.Calculator;
+
+
 public class Substractor {
 
     public int substractTwoNumbers(int x, int y) {

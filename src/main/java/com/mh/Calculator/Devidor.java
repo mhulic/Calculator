@@ -1,3 +1,5 @@
+package com.mh.Calculator;
+
 public class Devidor {
 
     public int devideTwoNumbers(int x, int y) {
