@@ -3,7 +3,7 @@ version: '3'
 services:
   # MSSQL Server container
   mssql:
-    image: microsoft/mssql-server:2019-latest
+    image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: 'Y'
       SA_PASSWORD: 'your_strong_password'  # Replace with a strong password
