@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  # MSSQL Server container
+  mssql:
+    image: microsoft/mssql-server:2019-latest
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: 'your_strong_password'  # Replace with a strong password
+    ports:
+      - "1433:1433"  # Map container port 1433 to host port 1433
+    volumes:
+      - mssql_data:/var/opt/mssql/data  # Persistent storage for database data
+
+  # PostgreSQL container
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: 'your_strong_password' # Replace with a strong password
+    ports:
+      - "5432:5432"  # Map container port 5432 to host port 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistent storage for database data
+
+volumes:
+  # Persistent volume for MSSQL data
+  mssql_data: {}
+  # Persistent volume for PostgreSQL data
+  postgres_data: {}
