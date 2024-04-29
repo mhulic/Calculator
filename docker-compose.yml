@@ -1,16 +1,15 @@
 version: '3'
-
 services:
-  # MSSQL Server container
-  mssql:
+  sql2022:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      ACCEPT_EULA: 'Y'
-      SA_PASSWORD: 'your_strong_password'  # Replace with a strong password
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: Passwort01&  # Replace with a stronger password
     ports:
-      - "1433:1433"  # Map container port 1433 to host port 1433
+      - "1433:1433"
     volumes:
-      - mssql_data:/var/opt/mssql/data  # Persistent storage for database data
+      - sql_data:/var/opt/mssql/data  # Optional: Persistent storage for database data
+    restart: unless-stopped  # Optional: Restart container automatically on failures
 
 # # PostgreSQL container
 # postgres:
@@ -24,6 +23,6 @@ services:
 
 volumes:
   # Persistent volume for MSSQL data
-  mssql_data: {}
+  sql_data: {}  # Optional: Define volume details if needed
 # # Persistent volume for PostgreSQL data
 # postgres_data: {}
