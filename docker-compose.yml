@@ -4,12 +4,17 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: Y
-      MSSQL_SA_PASSWORD: Passwort01&  # Replace with a stronger password
+      MSSQL_SA_PASSWORD: your_strong_password  # Replace with a strong password
     ports:
       - "1433:1433"
     volumes:
       - sql_data:/var/opt/mssql/data  # Optional: Persistent storage for database data
-    restart: unless-stopped  # Optional: Restart container automatically on failures
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "powershell", "-ExecutionPolicy", "Bypass", "Test-Connection `localhost` -Port 1433"]
+      interval: 10s  # Check health every 10 seconds
+      timeout: 5s  # Timeout after 5 seconds if unhealthy
+      retries: 3  # Retry up to 3 times before declaring unhealthy
 
 # # PostgreSQL container
 # postgres:
