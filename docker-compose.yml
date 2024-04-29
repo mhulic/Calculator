@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  sql2022:
+  sql2019:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
       ACCEPT_EULA: Y
