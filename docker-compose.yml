@@ -1,33 +1,33 @@
 version: '3'
 services:
-#  sql2022:
-#    image: mcr.microsoft.com/mssql/server:2022-latest
-#    environment:
-#      ACCEPT_EULA: Y
-#      MSSQL_SA_PASSWORD: your_strong_password  # Replace with a strong password
-#    ports:
-#      - "1433:1433"
-#    volumes:
-#      - sql_data:/var/opt/mssql/data  # Optional: Persistent storage for database data
-#    restart: unless-stopped
-#    healthcheck:
-#      test: ["CMD", "powershell", "-ExecutionPolicy", "Bypass", "Test-Connection `localhost` -Port 1433"]
-#      interval: 10s  # Check health every 10 seconds
-#      timeout: 5s  # Timeout after 5 seconds if unhealthy
-#      retries: 3  # Retry up to 3 times before declaring unhealthy
+  sql2022:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: your_strong_password  # Replace with a strong password
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql/data  # Optional: Persistent storage for database data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "powershell", "-ExecutionPolicy", "Bypass", "Test-Connection `localhost` -Port 1433"]
+      interval: 10s  # Check health every 10 seconds
+      timeout: 5s  # Timeout after 5 seconds if unhealthy
+      retries: 3  # Retry up to 3 times before declaring unhealthy
 
- # PostgreSQL container
- postgres:
-   image: postgres:latest
-   environment:
-     POSTGRES_PASSWORD: 'your_strong_password' # Replace with a strong password
-   ports:
-     - "5432:5432"  # Map container port 5432 to host port 5432
-   volumes:
-     - postgres_data:/var/lib/postgresql/data  # Persistent storage for database data
+# # PostgreSQL container
+# postgres:
+#   image: postgres:latest
+#   environment:
+#     POSTGRES_PASSWORD: 'your_strong_password' # Replace with a strong password
+#   ports:
+#     - "5432:5432"  # Map container port 5432 to host port 5432
+#   volumes:
+#     - postgres_data:/var/lib/postgresql/data  # Persistent storage for database data
 
 volumes:
   # Persistent volume for MSSQL data
-#  sql_data: {}  # Optional: Define volume details if needed
+  sql_data: {}  # Optional: Define volume details if needed
 # # Persistent volume for PostgreSQL data
-   postgres_data: {}
+#   postgres_data: {}
